@@ -1,43 +1,65 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Refresh4Ever</title>
-    <style>
-        @font-face {
-            font-family: 'Cascadia Mono';
-            src: url('fonts/CascadiaMono.ttf') format('truetype');
-            font-weight: normal;
-            font-style: normal;
-            font-display: swap;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: black;
-            color: #9e38b2;
-            font-family: 'Cascadia Mono', monospace;
-        }
+body {
+    background-color: black;
+    color: white;
+    font-family: 'Cascadia Mono', monospace;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100vh;
+    text-align: center;
+}
 
-        .refresh-text {
-            font-weight: 600;
-            font-size: 4em;
-        }
+.nav {
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+    padding: 10px 0;
+}
 
-        .refresh-text span {
-            color: #9e38b2;
-        }
-    </style>
-</head>
-<body>
-    <div class="refresh-text">
-        &gt; Bient<span>ô</span>t!
-    </div>
-</body>
-</html>
+.nav.middle-nav {
+    margin: 100px 0;
+}
+
+.nav-btn {
+    background-color: #333;
+    color: #ccc;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.nav-btn:hover {
+    color: white;
+}
+
+.main-content {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.footer {
+    margin-bottom: 50px;
+}
+
+.footer p {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.footer a {
+    color: blue;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
