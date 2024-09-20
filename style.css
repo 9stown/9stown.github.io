@@ -42,7 +42,7 @@ body {
 }
 
 .main-content {
-    font-size: 48px;
+    font-size: 60px;
     font-weight: 600;
     display: flex;
     justify-content: center;
@@ -51,7 +51,7 @@ body {
 }
 
 .footer {
-    margin-bottom: 50px;
+    margin-bottom: 55px;
     text-align: center;
 }
 
