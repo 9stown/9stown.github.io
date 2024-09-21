@@ -1,35 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Refresh4Ever</title>
+    <title>Connexion - Refresh4Ever</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="nav">
-        <a href="index.html" class="nav-btn">Home</a>
-        <a href="contact.html" class="nav-btn">Contact</a>
+        <a href="index.html" class="nav-btn">Accueil</a>
+        <a href="register.html" class="nav-btn">Inscription</a>
     </div>
 
     <div class="main-content">
-        <div class="login-container">
-            <h2>Login</h2>
-            <form action="#" method="POST">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" placeholder="Enter your username" required>
-
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="Enter your password" required>
-
-                <input type="submit" value="Login">
-            </form>
-        </div>
+        <h2>Connexion</h2>
+        <form id="login-form">
+            <label for="email">Email :</label>
+            <input type="email" id="email" placeholder="Entrez votre email" required>
+            <label for="password">Mot de passe :</label>
+            <input type="password" id="password" placeholder="Entrez votre mot de passe" required>
+            <input type="button" value="Se connecter" onclick="login()">
+        </form>
     </div>
 
-    <div class="footer">
-        <p>© 2024 Refresh4Ever</p>
-        <p><a href="https://github.com/">Visit my GitHub</a></p>
-    </div>
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
+      import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
+
+      const firebaseConfig = {
+          apiKey: "AIzaSyB6TIkXJJjCO5lubIAmla2HmIaRwuFq5qE",
+          authDomain: "refresh4ever-dd97b.firebaseapp.com",
+          projectId: "refresh4ever-dd97b",
+          storageBucket: "refresh4ever-dd97b.appspot.com",
+          messagingSenderId: "391655254933",
+          appId: "1:391655254933:web:6f70a2ac65d264c69e649c",
+          measurementId: "G-N73QLWJST7"
+      };
+
+
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+
+      function login() {
+          const email = document.getElementById('email').value;
+          const password = document.getElementById('password').value;
+
+          signInWithEmailAndPassword(auth, email, password)
+          .then((userCredential) => {
+              
+              const user = userCredential.user;
+              alert('Connexion réussie : ' + user.email);
+              window.location.href = 'index.html';
+          })
+          .catch((error) => {
+              const errorCode = error.code;
+              const errorMessage = error.message;
+              alert('Erreur : ' + errorMessage);
+          });
+      }
+    </script>
 </body>
 </html>
