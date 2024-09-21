@@ -4,12 +4,12 @@
 <script>
   // Configuration Firebase (à récupérer dans la console Firebase)
   const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_PROJECT_ID.appspot.com",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID"
+    apiKey: "AIzaSyB6TIkXJJjCO5lubIAmla2HmIaRwuFq5qE",
+    authDomain: "refresh4ever-dd97b.firebaseapp.com",
+    projectId: "refresh4ever-dd97b",
+    storageBucket: "refresh4ever-dd97b.appspot.com",
+    messagingSenderId: "391655254933",
+    appId: "1:391655254933:web:6f70a2ac65d264c69e649c"
   };
 
   // Initialiser Firebase
