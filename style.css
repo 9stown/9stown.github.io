@@ -65,3 +65,42 @@ body {
 .footer a:hover {
     text-decoration: underline;
 }
+
+.login-container {
+    background-color: #222;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+    width: 300px;
+    text-align: left;
+}
+
+.login-container h2 {
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+.login-container label {
+    font-size: 18px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.login-container input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.login-container input[type="submit"] {
+    background-color: #333;
+    color: white;
+    cursor: pointer;
+}
+
+.login-container input[type="submit"]:hover {
+    background-color: #555;
+}
