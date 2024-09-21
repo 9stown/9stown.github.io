@@ -40,7 +40,8 @@
       const app = initializeApp(firebaseConfig);
       const auth = getAuth(app);
 
-      function register() {
+      // Définition de la fonction register
+      window.register = function() {
           const email = document.getElementById('register-email').value;
           const password = document.getElementById('register-password').value;
 
@@ -54,7 +55,7 @@
               const errorMessage = error.message;
               alert('Erreur : ' + errorMessage);
           });
-      }
+      };
     </script>
 </body>
 </html>
