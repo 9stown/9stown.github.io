@@ -24,9 +24,11 @@
     </div>
 
     <script type="module">
+      // Import the functions you need from the SDKs you need
       import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
       import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
 
+      // Firebase configuration
       const firebaseConfig = {
           apiKey: "AIzaSyB6TIkXJJjCO5lubIAmla2HmIaRwuFq5qE",
           authDomain: "refresh4ever-dd97b.firebaseapp.com",
@@ -37,24 +39,27 @@
           measurementId: "G-N73QLWJST7"
       };
 
-
+      // Initialize Firebase
       const app = initializeApp(firebaseConfig);
       const auth = getAuth(app);
 
+      // Fonction pour gérer la connexion
       function login() {
           const email = document.getElementById('email').value;
           const password = document.getElementById('password').value;
 
           signInWithEmailAndPassword(auth, email, password)
           .then((userCredential) => {
-              
+              // Connexion réussie
               const user = userCredential.user;
+              console.log('Connexion réussie : ', user.email);
               alert('Connexion réussie : ' + user.email);
-              window.location.href = 'index.html';
+              window.location.href = 'index.html'; // Redirection après connexion
           })
           .catch((error) => {
               const errorCode = error.code;
               const errorMessage = error.message;
+              console.error('Erreur lors de la connexion : ', errorMessage);
               alert('Erreur : ' + errorMessage);
           });
       }
