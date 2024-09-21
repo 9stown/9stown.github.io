@@ -28,19 +28,22 @@
     </main>
 
     <script type="module">
+        // Importation des SDK Firebase
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
         import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
 
+        // Configuration Firebase (mettre ici les informations de votre projet Firebase)
         const firebaseConfig = {
-            apiKey: "AIzaSyB6TIkXJJjCO5lubIAmla2HmIaRwuFq5qE",
-            authDomain: "refresh4ever-dd97b.firebaseapp.com",
-            projectId: "refresh4ever-dd97b",
-            storageBucket: "refresh4ever-dd97b.appspot.com",
-            messagingSenderId: "391655254933",
-            appId: "1:391655254933:web:6f70a2ac65d264c69e649c",
-            measurementId: "G-N73QLWJST7"
+            apiKey: "VOTRE_API_KEY",
+            authDomain: "VOTRE_AUTH_DOMAIN",
+            projectId: "VOTRE_PROJECT_ID",
+            storageBucket: "VOTRE_STORAGE_BUCKET",
+            messagingSenderId: "VOTRE_MESSAGING_SENDER_ID",
+            appId: "VOTRE_APP_ID",
+            measurementId: "VOTRE_MEASUREMENT_ID"
         };
 
+        // Initialisation Firebase
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
 
@@ -50,12 +53,14 @@
             const password = document.getElementById('password').value;
 
             try {
+                // Tentative de connexion avec email et mot de passe
                 const userCredential = await signInWithEmailAndPassword(auth, email, password);
                 const user = userCredential.user;
                 alert('Connexion réussie : ' + user.email);
-                window.location.href = 'index.html';
+                window.location.href = 'index.html'; // Redirection après connexion réussie
             } catch (error) {
-                alert('Erreur : ' + error.message);
+                // Gestion des erreurs (affichage d'un message à l'utilisateur)
+                alert('Erreur lors de la connexion : ' + error.message);
             }
         }
     </script>
