@@ -19,7 +19,7 @@ body {
 .nav {
     display: flex;
     justify-content: space-between;
-    width: 250px;
+    width: 320px;
     padding: 10px 0;
     margin-bottom: 20px;
 }
