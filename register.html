@@ -3,65 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Inscrivez-vous sur Refresh4Ever et rejoignez notre communauté.">
-    <title>Inscription - Refresh4Ever</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Inscription</title>
+    <!-- Inclure Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
 </head>
 <body>
-    <header>
-        <nav class="nav">
-            <a href="index.html" class="nav-btn">Accueil</a>
-            <a href="login.html" class="nav-btn">Connexion</a>
-            <a href="contact.html" class="nav-btn">Contact</a>
-        </nav>
-    </header>
+    <form onsubmit="register(event)">
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="password" id="password" placeholder="Mot de passe" required>
+        <button type="submit">S'inscrire</button>
+    </form>
 
-    <main class="main-content">
-        <h2>Inscription</h2>
-        <form id="register-form" onsubmit="event.preventDefault(); register();">
-            <label for="register-email">Email :</label>
-            <input type="email" id="register-email" placeholder="Entrez votre email" required>
-            <label for="register-password">Mot de passe :</label>
-            <input type="password" id="register-password" placeholder="Entrez votre mot de passe" required>
-            <button type="submit">S'inscrire</button>
-        </form>
-    </main>
-
-    <script type="module">
-        // Importation des SDK Firebase
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
-        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
-
-        // Configuration Firebase (mettre ici les informations de votre projet Firebase)
-        const firebaseConfig = {
-            apiKey: "VOTRE_API_KEY",
-            authDomain: "VOTRE_AUTH_DOMAIN",
-            projectId: "VOTRE_PROJECT_ID",
-            storageBucket: "VOTRE_STORAGE_BUCKET",
-            messagingSenderId: "VOTRE_MESSAGING_SENDER_ID",
-            appId: "VOTRE_APP_ID",
-            measurementId: "VOTRE_MEASUREMENT_ID"
-        };
-
-        // Initialisation Firebase
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-
-        // Fonction pour gérer l'inscription
-        async function register() {
-            const email = document.getElementById('register-email').value;
-            const password = document.getElementById('register-password').value;
-
-            try {
-                // Tentative d'inscription avec email et mot de passe
-                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-                alert('Inscription réussie : ' + userCredential.user.email);
-                window.location.href = 'login.html'; // Redirection après inscription réussie
-            } catch (error) {
-                // Gestion des erreurs (affichage d'un message à l'utilisateur)
-                alert('Erreur lors de l\'inscription : ' + error.message);
-            }
-        }
-    </script>
+    <!-- Inclure le fichier auth.js -->
+    <script src="auth.js"></script>
 </body>
 </html>
