@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription - Refresh4Ever</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="nav">
+        <a href="index.html" class="nav-btn">Accueil</a>
+        <a href="login.html" class="nav-btn">Connexion</a>
+    </div>
+
+    <div class="main-content">
+        <h2>Inscription</h2>
+        <form id="register-form">
+            <label for="register-email">Email :</label>
+            <input type="email" id="register-email" placeholder="Entrez votre email" required>
+            <label for="register-password">Mot de passe :</label>
+            <input type="password" id="register-password" placeholder="Entrez votre mot de passe" required>
+            <input type="button" value="S'inscrire" onclick="register()">
+        </form>
+    </div>
+
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
+      import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
+
+      const firebaseConfig = {
+          apiKey: "AIzaSyB6TIkXJJjCO5lubIAmla2HmIaRwuFq5qE",
+          authDomain: "refresh4ever-dd97b.firebaseapp.com",
+          projectId: "refresh4ever-dd97b",
+          storageBucket: "refresh4ever-dd97b.appspot.com",
+          messagingSenderId: "391655254933",
+          appId: "1:391655254933:web:6f70a2ac65d264c69e649c",
+          measurementId: "G-N73QLWJST7"
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+
+      function register() {
+          const email = document.getElementById('register-email').value;
+          const password = document.getElementById('register-password').value;
+
+          createUserWithEmailAndPassword(auth, email, password)
+          .then((userCredential) => {
+              const user = userCredential.user;
+              alert('Inscription réussie : ' + user.email);
+              window.location.href = 'login.html';
+          })
+          .catch((error) => {
+              const errorCode = error.code;
+              const errorMessage = error.message;
+              alert('Erreur : ' + errorMessage);
+          });
+      }
+    </script>
+</body>
+</html>
