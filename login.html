@@ -3,67 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Page de connexion pour Refresh4Ever. Connectez-vous pour accéder à votre compte.">
     <title>Connexion - Refresh4Ever</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="nav">
-        <a href="index.html" class="nav-btn">Accueil</a>
-        <a href="register.html" class="nav-btn">Inscription</a>
-        <a href="contact.html" class="nav-btn">Contact</a>
-    </div>
+    <header>
+        <nav class="nav">
+            <a href="index.html" class="nav-btn">Accueil</a>
+            <a href="register.html" class="nav-btn">Inscription</a>
+            <a href="contact.html" class="nav-btn">Contact</a>
+        </nav>
+    </header>
 
-    <div class="main-content">
+    <main class="main-content">
         <h2>Connexion</h2>
-        <form id="login-form">
+        <form id="login-form" onsubmit="event.preventDefault(); login();">
             <label for="email">Email :</label>
             <input type="email" id="email" placeholder="Entrez votre email" required>
             <label for="password">Mot de passe :</label>
             <input type="password" id="password" placeholder="Entrez votre mot de passe" required>
-            <input type="button" value="Se connecter" onclick="login()">
+            <button type="submit">Se connecter</button>
         </form>
-    </div>
+    </main>
 
     <script type="module">
-      // Import the functions you need from the SDKs you need
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
-      import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
 
-      // Firebase configuration
-      const firebaseConfig = {
-          apiKey: "AIzaSyB6TIkXJJjCO5lubIAmla2HmIaRwuFq5qE",
-          authDomain: "refresh4ever-dd97b.firebaseapp.com",
-          projectId: "refresh4ever-dd97b",
-          storageBucket: "refresh4ever-dd97b.appspot.com",
-          messagingSenderId: "391655254933",
-          appId: "1:391655254933:web:6f70a2ac65d264c69e649c",
-          measurementId: "G-N73QLWJST7"
-      };
+        const firebaseConfig = {
+            apiKey: "AIzaSyB6TIkXJJjCO5lubIAmla2HmIaRwuFq5qE",
+            authDomain: "refresh4ever-dd97b.firebaseapp.com",
+            projectId: "refresh4ever-dd97b",
+            storageBucket: "refresh4ever-dd97b.appspot.com",
+            messagingSenderId: "391655254933",
+            appId: "1:391655254933:web:6f70a2ac65d264c69e649c",
+            measurementId: "G-N73QLWJST7"
+        };
 
-      // Initialize Firebase
-      const app = initializeApp(firebaseConfig);
-      const auth = getAuth(app);
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
 
-      // Fonction pour gérer la connexion
-      function login() {
-          const email = document.getElementById('email').value;
-          const password = document.getElementById('password').value;
+        // Fonction pour gérer la connexion
+        async function login() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
 
-          signInWithEmailAndPassword(auth, email, password)
-          .then((userCredential) => {
-              // Connexion réussie
-              const user = userCredential.user;
-              console.log('Connexion réussie : ', user.email);
-              alert('Connexion réussie : ' + user.email);
-              window.location.href = 'index.html'; // Redirection après connexion
-          })
-          .catch((error) => {
-              const errorCode = error.code;
-              const errorMessage = error.message;
-              console.error('Erreur lors de la connexion : ', errorMessage);
-              alert('Erreur : ' + errorMessage);
-          });
-      }
+            try {
+                const userCredential = await signInWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+                alert('Connexion réussie : ' + user.email);
+                window.location.href = 'index.html';
+            } catch (error) {
+                alert('Erreur : ' + error.message);
+            }
+        }
     </script>
 </body>
 </html>
