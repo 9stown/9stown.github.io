@@ -3,36 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>R4E</title>
+    <title>Mon Site Animé</title>
     <link href="https://fonts.googleapis.com/css2?family=Cascadia+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1 class="fade-in">Refresh4Ever</h1>
-        <p>Welcome, here, is empty, no ?</p>
-        <button class="btn-toggle">Activer/Désactiver le mode sombre</button>
-    </header>
-    
-    <section id="about" class="slide-in">
-        <h2>À Propos</h2>
-        <p>Ceci est une section avec une animation de glissement.</p>
-    </section>
+    <div class="page-wrapper">
+        <header>
+            <h1 class="fade-in">Welcome, user</h1>
+            <p>Welcome to my page :3 </p>
+            <button class="btn-toggle">Dark/Light</button>
+        </header>
+        
+        <section id="about" class="slide-in section">
+            <h2>Infos</h2>
+            <p>Hey ! This is some informations on me.</p>
+        </section>
 
-    <section id="projects" class="zoom-in">
-        <h2>Projets</h2>
-        <div class="project-grid">
-            <div class="project-item">Glatch</div>
-            <div class="project-item">.</div>
-            <div class="project-item">.</div>
-        </div>
-    </section>
+        <section id="projects" class="zoom-in section">
+            <h2>Projects</h2>
+            <div class="project-grid">
+                <div class="project-item flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">Projet 1</div>
+                        <div class="flip-card-back">
+                            <h3>Glatch</h3>
+                            <p>A Discord ai chatbot with Groq.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-item flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">Projet 2</div>
+                        <div class="flip-card-back">
+                            <h3>Nothing here, for the moment</h3>
+                            <p>idk</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-item flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">Projet 3</div>
+                        <div class="flip-card-back">
+                            <h3>Nothing here, for the moment</h3>
+                            <p>blabla</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="fade-in section">
+            <h2>Contact</h2>
+            <form class="contact-form">
+                <label for="name">Name :</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email :</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="message">Message :</label>
+                <textarea id="message" name="message" required></textarea>
+
+                <button type="submit">Send</button>
+            </form>
+        </section>
+    </div>
 
     <footer>
-        <p>© 2024 Refresh4Ever.</p>
+        <p>© 2024 Refresh4Ever</p>
     </footer>
 
     <script src="scripts.js"></script>
 </body>
 </html>
+
 
