@@ -1,79 +1,96 @@
-* {
+/* Styles généraux */
+body {
+    font-family: 'Cascadia Mono', monospace;
+    background-color: #111;
+    color: #eee;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    transition: background-color 0.5s ease;
 }
 
-body {
-    background-color: black;
-    color: white;
-    font-family: 'Cascadia Mono', monospace;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
+header {
     text-align: center;
+    padding: 50px 0;
+    background: linear-gradient(45deg, #222, #333);
 }
 
-.nav {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 400px;
-    padding: 10px 0;
-    margin-bottom: 20px;
+h1 {
+    font-size: 3rem;
+    color: #fff;
+    margin-bottom: 10px;
 }
 
-.nav-btn {
-    background-color: #333;
-    color: #ccc;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 20px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+p {
+    color: #bbb;
+    margin: 20px auto;
 }
 
-.nav-btn:hover {
-    background-color: #555;
-    color: white;
+section {
+    padding: 50px;
+    background-color: #222;
+    color: #ddd;
+    margin: 20px 0;
 }
 
-.main-content {
-    font-size: 24px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
+/* Animation */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 20px;
+@keyframes slideIn {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
 }
 
-input[type="email"],
-input[type="password"],
-button[type="submit"] {
-    padding: 10px;
-    font-size: 16px;
-    width: 250px;
-    border-radius: 5px;
-    border: 1px solid #444;
+@keyframes zoomIn {
+    from { transform: scale(0.5); }
+    to { transform: scale(1); }
 }
 
-button[type="submit"] {
+.fade-in {
+    animation: fadeIn 2s ease-in-out;
+}
+
+.slide-in {
+    animation: slideIn 1s ease-in-out;
+}
+
+.zoom-in {
+    animation: zoomIn 1.5s ease-in-out;
+}
+
+/* Bouton dark mode */
+.btn-toggle {
     background-color: #444;
-    color: white;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-button[type="submit"]:hover {
-    background-color: #555;
+.btn-toggle:hover {
+    background-color: #666;
 }
+
+/* Grille de projets */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.project-item {
+    background-color: #333;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.project-item:hover {
+    transform: translateY(-10px);
+    background-color: #444;
+}
+
