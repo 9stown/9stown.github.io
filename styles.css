@@ -1,6 +1,10 @@
-/* Supprime la barre de défilement horizontal */
+/* Suppression de la barre de défilement inutile */
 html, body {
+    margin: 0;
+    padding: 0;
     overflow-x: hidden;
+    box-sizing: border-box;
+    height: 100%;
 }
 
 /* Style général */
@@ -8,8 +12,6 @@ body {
     font-family: 'Cascadia Mono', monospace;
     background-color: #ffffff;
     color: #111;
-    margin: 0;
-    padding: 0;
     transition: background-color 0.5s ease, color 0.5s ease;
 }
 
@@ -17,7 +19,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    overflow-x: hidden;
+    justify-content: space-between;
 }
 
 header {
@@ -65,14 +67,14 @@ section {
     animation: slideIn 1.2s ease-in-out;
 }
 
-/* Dark/Light mode */
+/* Mode sombre */
 body.dark-mode {
     background-color: #111;
     color: #eee;
 }
 
 .theme-toggle {
-    position: absolute;
+    position: fixed;
     top: 20px;
     right: 20px;
     cursor: pointer;
@@ -142,3 +144,4 @@ footer {
     color: #333;
     margin-top: auto;
 }
+
