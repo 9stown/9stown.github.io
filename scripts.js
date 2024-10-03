@@ -3,11 +3,12 @@ const themeToggle = document.querySelector('.theme-toggle');
 const themeIcon = document.getElementById('theme-icon');
 const body = document.body;
 
+// Initialisation du mode en fonction du localStorage
 if (localStorage.getItem('theme') === 'dark') {
     body.classList.add('dark-mode');
-    themeIcon.setAttribute("fill", "#111");
+    themeIcon.setAttribute("fill", "#ffffff"); // Couleur claire pour l'icône en mode sombre
 } else {
-    themeIcon.setAttribute("fill", "#e8eaed");
+    themeIcon.setAttribute("fill", "#111111"); // Couleur sombre pour l'icône en mode clair
 }
 
 themeToggle.addEventListener('click', () => {
@@ -15,9 +16,10 @@ themeToggle.addEventListener('click', () => {
     
     if (body.classList.contains('dark-mode')) {
         localStorage.setItem('theme', 'dark');
-        themeIcon.setAttribute("fill", "#111");
+        themeIcon.setAttribute("fill", "#ffffff");
     } else {
         localStorage.setItem('theme', 'light');
-        themeIcon.setAttribute("fill", "#e8eaed");
+        themeIcon.setAttribute("fill", "#111111");
     }
 });
+
