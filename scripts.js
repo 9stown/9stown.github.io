@@ -23,4 +23,3 @@ themeToggle.addEventListener('click', () => {
     }
 });
 
-
