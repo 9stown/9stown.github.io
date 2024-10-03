@@ -5,9 +5,9 @@ const body = document.body;
 
 if (localStorage.getItem('theme') === 'dark') {
     body.classList.add('dark-mode');
-    themeIcon.src = 'light-mode-icon.svg';
+    themeIcon.setAttribute("fill", "#111");
 } else {
-    themeIcon.src = 'dark-mode-icon.svg';
+    themeIcon.setAttribute("fill", "#e8eaed");
 }
 
 themeToggle.addEventListener('click', () => {
@@ -15,9 +15,9 @@ themeToggle.addEventListener('click', () => {
     
     if (body.classList.contains('dark-mode')) {
         localStorage.setItem('theme', 'dark');
-        themeIcon.src = 'light-mode-icon.svg';
+        themeIcon.setAttribute("fill", "#111");
     } else {
         localStorage.setItem('theme', 'light');
-        themeIcon.src = 'dark-mode-icon.svg';
+        themeIcon.setAttribute("fill", "#e8eaed");
     }
 });
