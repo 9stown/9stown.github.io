@@ -7,13 +7,20 @@
 body {
     font-family: 'Cascadia Mono', monospace;
     transition: background-color 0.5s, color 0.5s;
-    overflow-x: hidden; /* Evite le scroll horizontal */
+    overflow-x: hidden; /* Eviter le scroll horizontal */
+    overflow-y: hidden; /* Eviter le scroll vertical */
+    min-height: 100vh; /* S'assure que le contenu occupe toute la hauteur de l'écran */
 }
 
 .page-wrapper {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+}
+
+header {
+    padding: 100px 20px; /* Ajoute de l'espace pour abaisser le texte */
+    text-align: center;
 }
 
 h1, h2, p {
@@ -131,4 +138,23 @@ footer {
 
 .dark-theme button:hover {
     background-color: #555555;
+}
+
+/* Media Queries pour une meilleure responsivité */
+@media (max-width: 768px) {
+    header {
+        padding: 80px 20px; /* Réduire le padding pour petits écrans */
+    }
+
+    .section {
+        padding: 30px 10px; /* Réduire l'espace autour des sections pour petits écrans */
+    }
+
+    .project-grid {
+        flex-direction: column; /* Empile les projets sur petits écrans */
+    }
+
+    .theme-toggle {
+        top: 10px; /* Ajuste la position de l'icône pour petits écrans */
+    }
 }
