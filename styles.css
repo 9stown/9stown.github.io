@@ -28,14 +28,14 @@ body::-webkit-scrollbar {
 header {
     padding: 100px 20px;
     text-align: center;
-    background: linear-gradient(135deg, #007bff, #00d4ff); /* Gradient pour le thème clair */
+    background: linear-gradient(135deg, #007bff, #00d4ff); /* Dégradé clair */
     color: #fff;
     transition: background 0.5s;
-    border-radius: 0 0 40px 40px; /* Arrondi en bas seulement */
+    border-radius: 0; /* Aucun bord arrondi */
 }
 
 .dark-theme header {
-    background: linear-gradient(135deg, #333333, #555555); /* Gradient pour le thème sombre */
+    background: linear-gradient(135deg, #333333, #555555); /* Dégradé sombre */
 }
 
 h1, h2, p {
@@ -54,6 +54,7 @@ h1, h2, p {
 
 .no-top-radius {
     border-radius: 0 0 12px 12px; /* Pas de bord arrondi en haut */
+    margin-top: -50px; /* Fusion avec l'en-tête */
 }
 
 .dark-theme .section {
@@ -220,4 +221,3 @@ footer {
         top: 10px;
     }
 }
-
