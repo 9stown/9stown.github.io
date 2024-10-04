@@ -76,6 +76,7 @@ h1, h2, p {
 .project-link {
     text-decoration: none; /* Supprime le soulignement du lien */
     display: block; /* Rend toute la carte cliquable */
+    color: #fff;
 }
 
 .project-content {
