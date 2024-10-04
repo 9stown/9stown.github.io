@@ -9,21 +9,20 @@ body {
     transition: background-color 0.5s, color 0.5s;
     overflow-x: hidden;
     min-height: 100vh;
-    /* Permet le scroll mais sans afficher de barre de défilement */
     overflow: hidden;
     overscroll-behavior-y: contain;
 }
 
 body::-webkit-scrollbar {
-    display: none; /* Masque les barres de scroll */
+    display: none;
 }
 
 .page-wrapper {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-    overflow-y: scroll; /* Permet le défilement avec la molette */
-    height: 100vh; /* Nécessaire pour éviter d'ajouter du scroll supplémentaire */
+    overflow-y: scroll;
+    height: 100vh;
 }
 
 header {
@@ -32,10 +31,11 @@ header {
     background: linear-gradient(135deg, #007bff, #00d4ff); /* Gradient pour le thème clair */
     color: #fff;
     transition: background 0.5s;
+    border-radius: 0 0 40px 40px; /* Arrondi en bas seulement */
 }
 
 .dark-theme header {
-    background: linear-gradient(135deg, #333333, #555555); /* Gradient plus sombre pour le thème sombre */
+    background: linear-gradient(135deg, #333333, #555555); /* Gradient pour le thème sombre */
 }
 
 h1, h2, p {
@@ -47,18 +47,22 @@ h1, h2, p {
     padding: 50px 20px;
     margin-bottom: 30px;
     border-radius: 12px;
-    background-color: #f9f9f9; /* Couleur de fond plus claire */
+    background-color: #f9f9f9;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     transition: background-color 0.5s, color 0.5s;
 }
 
+.no-top-radius {
+    border-radius: 0 0 12px 12px; /* Pas de bord arrondi en haut */
+}
+
 .dark-theme .section {
-    background-color: #1c1c1c; /* Couleur de fond pour le thème sombre */
+    background-color: #1c1c1c;
     color: #e0e0e0;
 }
 
 .section:nth-child(even) {
-    background-color: #eaf4ff; /* Variation de couleur pour sections paires */
+    background-color: #eaf4ff;
 }
 
 .dark-theme .section:nth-child(even) {
@@ -80,6 +84,9 @@ h1, h2, p {
     border-radius: 12px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s, background-color 0.5s, color 0.5s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .dark-theme .project-item {
@@ -98,14 +105,23 @@ h1, h2, p {
 }
 
 .project-link {
-    text-decoration: none; /* Supprime le soulignement du lien */
-    display: block; /* Rend toute la carte cliquable */
-    color: inherit; /* Garde la couleur du texte */
+    text-decoration: none;
+    display: block;
+    color: inherit;
     transition: color 0.3s;
 }
 
 .project-link:hover {
-    color: #fff; /* Effet survol */
+    color: #fff;
+}
+
+.project-content {
+    text-align: center;
+}
+
+.project-icon {
+    font-size: 48px;
+    margin-bottom: 10px;
 }
 
 .contact-form {
@@ -176,16 +192,15 @@ footer {
     top: 20px;
     right: 20px;
     cursor: pointer;
+    z-index: 100;
 }
 
-.dark-theme {
-    background-color: #111111;
+.theme-toggle span {
+    font-size: 30px;
+}
+
+.dark-theme .theme-toggle span {
     color: #f0f0f0;
-}
-
-.light-theme {
-    background-color: #f9f9f9;
-    color: #111111;
 }
 
 @media (max-width: 768px) {
@@ -205,3 +220,4 @@ footer {
         top: 10px;
     }
 }
+
