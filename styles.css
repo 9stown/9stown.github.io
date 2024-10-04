@@ -1,72 +1,36 @@
-/* Reset pour éviter les marges et padding par défaut */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Corps de la page */
 body {
     font-family: 'Cascadia Mono', monospace;
-    background-color: var(--background-color);
-    color: var(--text-color);
     transition: background-color 0.5s, color 0.5s;
-    min-height: 100vh;
-    overflow-x: hidden;
+    overflow-x: hidden; /* Eviter le scroll horizontal */
+    overflow-y: hidden; /* Eviter le scroll vertical */
+    min-height: 100vh; /* S'assure que le contenu occupe toute la hauteur de l'écran */
 }
 
-/* Variables de thème */
-:root {
-    --background-color: #ffffff;
-    --text-color: #000000;
-    --primary-color: #007bff;
-    --secondary-color: #f8f9fa;
-}
-
-.dark-theme {
-    --background-color: #111111;
-    --text-color: #f0f0f0;
-    --primary-color: #444444;
-    --secondary-color: #333333;
-}
-
-/* Wrapper de la page pour centraliser */
 .page-wrapper {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 20px;
 }
 
-/* En-tête avec effet parallaxe */
 header {
-    padding: 250px 20px; /* Texte encore plus bas */
+    padding: 100px 20px; /* Ajoute de l'espace pour abaisser le texte */
     text-align: center;
-    background: url('header-bg.jpg') center/cover fixed;
-    color: var(--text-color);
-    position: relative;
-    z-index: 1;
 }
 
-header h1 {
-    font-size: 3rem;
+h1, h2, p {
     margin-bottom: 20px;
+    text-align: center;
 }
 
-header h2 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-}
-
-header p {
-    font-size: 1.2rem;
-    margin-top: 10px;
-}
-
-/* Section générique */
 .section {
-    padding: 60px 20px;
+    padding: 50px 20px;
     margin-bottom: 30px;
-    background-color: var(--secondary-color);
     border-radius: 12px;
     transition: background-color 0.5s, color 0.5s;
 }
@@ -74,73 +38,53 @@ header p {
 .project-grid {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
     gap: 20px;
 }
 
 .project-item {
-    width: calc(33.333% - 40px); /* Pour occuper un tiers d'espace */
-    max-width: 350px;
+    width: 100%;
+    max-width: 300px;
     padding: 20px;
-    background-color: var(--background-color);
+    background-color: #f0f0f0;
     border-radius: 12px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out, background-color 0.5s;
+    transition: transform 0.3s, background-color 0.5s, color 0.5s;
 }
 
 .project-item:hover {
-    transform: translateY(-10px) scale(1.05);
+    transform: translateY(-5px);
 }
 
 .project-content {
-    color: var(--text-color);
     text-align: center;
 }
 
-/* Nouvelle section "À propos" */
-.about-section {
-    padding: 100px 20px;
-    background-color: var(--primary-color);
-    text-align: center;
-}
-
-.about-section h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-}
-
-.about-section p {
-    font-size: 1.2rem;
-    margin-top: 10px;
-    color: var(--text-color);
-}
-
-/* Formulaire de contact */
 .contact-form {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    max-width: 600px;
+    gap: 10px;
+    max-width: 400px;
     margin: 0 auto;
 }
 
 .contact-form input, .contact-form textarea {
-    padding: 15px;
-    border-radius: 8px;
+    padding: 10px;
+    border-radius: 6px;
     border: 1px solid #ccc;
     transition: border-color 0.3s;
 }
 
 .contact-form input:focus, .contact-form textarea:focus {
-    border-color: var(--primary-color);
+    border-color: #007bff;
 }
 
 button {
-    padding: 15px 30px;
-    background-color: var(--primary-color);
+    padding: 10px 20px;
+    background-color: #007bff;
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 6px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
@@ -149,23 +93,69 @@ button:hover {
     background-color: #0056b3;
 }
 
-/* Ajustement pour la responsivité */
+footer {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+}
+
+.dark-theme {
+    background-color: #111111;
+    color: #f0f0f0;
+}
+
+.light-theme {
+    background-color: #f9f9f9;
+    color: #111111;
+}
+
+.light-theme .project-item {
+    background-color: #ffffff;
+}
+
+.dark-theme .project-item {
+    background-color: #222222;
+}
+
+.dark-theme .project-content {
+    color: #f0f0f0;
+}
+
+.dark-theme input, .dark-theme textarea {
+    background-color: #333333;
+    color: #f0f0f0;
+}
+
+.dark-theme button {
+    background-color: #444444;
+}
+
+.dark-theme button:hover {
+    background-color: #555555;
+}
+
+/* Media Queries pour une meilleure responsivité */
 @media (max-width: 768px) {
-    .project-item {
-        width: 100%;
-        max-width: none;
+    header {
+        padding: 80px 20px; /* Réduire le padding pour petits écrans */
     }
 
-    header h1 {
-        font-size: 2.5rem;
+    .section {
+        padding: 30px 10px; /* Réduire l'espace autour des sections pour petits écrans */
     }
 
-    header h2 {
-        font-size: 1.3rem;
+    .project-grid {
+        flex-direction: column; /* Empile les projets sur petits écrans */
     }
 
-    .about-section {
-        padding: 50px 20px;
+    .theme-toggle {
+        top: 10px; /* Ajuste la position de l'icône pour petits écrans */
     }
 }
 
