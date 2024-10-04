@@ -8,7 +8,7 @@ function setTheme() {
     if (isDarkMode) {
         body.classList.add('dark-theme');
         body.classList.remove('light-theme');
-        themeIcon.setAttribute('fill', '#f0f0f0');  // Icône en blanc pour le thème sombre
+        themeIcon.setAttribute('fill', '#f1f0f0');  // Icône en blanc pour le thème sombre
     } else {
         body.classList.add('light-theme');
         body.classList.remove('dark-theme');
