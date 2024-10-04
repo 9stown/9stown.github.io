@@ -69,8 +69,21 @@ section {
 
 /* Mode sombre */
 body.dark-mode {
+    background-color: #1e1e1e;
+    color: #f5f5f5;
+}
+
+body.dark-mode header, body.dark-mode footer {
     background-color: #111;
-    color: #eee;
+}
+
+body.dark-mode section {
+    background-color: #333;
+}
+
+body.dark-mode .project-item {
+    background-color: #444;
+    color: #f5f5f5;
 }
 
 .theme-toggle {
@@ -143,5 +156,11 @@ footer {
     background-color: #f9f9f9;
     color: #333;
     margin-top: auto;
+}
+
+/* Mode sombre pour le footer */
+body.dark-mode footer {
+    background-color: #111;
+    color: #f5f5f5;
 }
 
