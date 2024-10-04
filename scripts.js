@@ -24,4 +24,3 @@ themeToggle.addEventListener('click', () => {
 // Initialiser le thème sur le mode clair
 isDarkMode = false;
 setTheme();
-
