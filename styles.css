@@ -29,8 +29,13 @@ body::-webkit-scrollbar {
 header {
     padding: 100px 20px;
     text-align: center;
-    background: linear-gradient(135deg, #007bff, #00d4ff); /* Amélioration avec du gradient */
+    background: linear-gradient(135deg, #007bff, #00d4ff); /* Gradient pour le thème clair */
     color: #fff;
+    transition: background 0.5s;
+}
+
+.dark-theme header {
+    background: linear-gradient(135deg, #333333, #555555); /* Gradient plus sombre pour le thème sombre */
 }
 
 h1, h2, p {
@@ -42,12 +47,22 @@ h1, h2, p {
     padding: 50px 20px;
     margin-bottom: 30px;
     border-radius: 12px;
-    background-color: #f9f9f9; /* Couleurs plus contrastées */
+    background-color: #f9f9f9; /* Couleur de fond plus claire */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.5s, color 0.5s;
+}
+
+.dark-theme .section {
+    background-color: #1c1c1c; /* Couleur de fond pour le thème sombre */
+    color: #e0e0e0;
 }
 
 .section:nth-child(even) {
     background-color: #eaf4ff; /* Variation de couleur pour sections paires */
+}
+
+.dark-theme .section:nth-child(even) {
+    background-color: #2a2a2a;
 }
 
 .project-grid {
@@ -67,20 +82,30 @@ h1, h2, p {
     transition: transform 0.3s, background-color 0.5s, color 0.5s;
 }
 
+.dark-theme .project-item {
+    background-color: #2a2a2a;
+    color: #e0e0e0;
+}
+
 .project-item:hover {
     transform: translateY(-5px);
     background-color: #007bff;
     color: white;
 }
 
+.dark-theme .project-item:hover {
+    background-color: #444444;
+}
+
 .project-link {
     text-decoration: none; /* Supprime le soulignement du lien */
     display: block; /* Rend toute la carte cliquable */
-    color: #fff;
+    color: inherit; /* Garde la couleur du texte */
+    transition: color 0.3s;
 }
 
-.project-content {
-    text-align: center;
+.project-link:hover {
+    color: #fff; /* Effet survol */
 }
 
 .contact-form {
@@ -98,8 +123,18 @@ h1, h2, p {
     transition: border-color 0.3s;
 }
 
+.dark-theme .contact-form input, .dark-theme .contact-form textarea {
+    background-color: #333333;
+    color: #e0e0e0;
+    border-color: #444444;
+}
+
 .contact-form input:focus, .contact-form textarea:focus {
     border-color: #007bff;
+}
+
+.dark-theme .contact-form input:focus, .dark-theme .contact-form textarea:focus {
+    border-color: #555555;
 }
 
 button {
@@ -112,8 +147,16 @@ button {
     transition: background-color 0.3s;
 }
 
+.dark-theme button {
+    background-color: #444444;
+}
+
 button:hover {
     background-color: #0056b3;
+}
+
+.dark-theme button:hover {
+    background-color: #555555;
 }
 
 footer {
@@ -122,6 +165,10 @@ footer {
     background-color: #007bff;
     color: #fff;
     padding: 20px;
+}
+
+.dark-theme footer {
+    background-color: #333333;
 }
 
 .theme-toggle {
@@ -139,31 +186,6 @@ footer {
 .light-theme {
     background-color: #f9f9f9;
     color: #111111;
-}
-
-.light-theme .project-item {
-    background-color: #ffffff;
-}
-
-.dark-theme .project-item {
-    background-color: #222222;
-}
-
-.dark-theme .project-content {
-    color: #f0f0f0;
-}
-
-.dark-theme input, .dark-theme textarea {
-    background-color: #333333;
-    color: #f0f0f0;
-}
-
-.dark-theme button {
-    background-color: #444444;
-}
-
-.dark-theme button:hover {
-    background-color: #555555;
 }
 
 @media (max-width: 768px) {
