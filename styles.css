@@ -1,89 +1,94 @@
-/* Suppression de la barre de défilement inutile */
-html, body {
+* {
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
     box-sizing: border-box;
-    height: 100%;
 }
 
-/* Style général */
 body {
     font-family: 'Cascadia Mono', monospace;
-    background-color: #ffffff;
-    color: #111;
-    transition: background-color 0.5s ease, color 0.5s ease;
+    transition: background-color 0.5s, color 0.5s;
+    overflow-x: hidden; /* Evite le scroll horizontal */
 }
 
 .page-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1, h2, p {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.section {
+    padding: 50px 20px;
+    margin-bottom: 30px;
+    border-radius: 12px;
+    transition: background-color 0.5s, color 0.5s;
+}
+
+.project-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.project-item {
+    width: 100%;
+    max-width: 300px;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 12px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, background-color 0.5s, color 0.5s;
+}
+
+.project-item:hover {
+    transform: translateY(-5px);
+}
+
+.project-content {
+    text-align: center;
+}
+
+.contact-form {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
-    justify-content: space-between;
+    gap: 10px;
+    max-width: 400px;
+    margin: 0 auto;
 }
 
-header {
+.contact-form input, .contact-form textarea {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    transition: border-color 0.3s;
+}
+
+.contact-form input:focus, .contact-form textarea:focus {
+    border-color: #007bff;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+footer {
     text-align: center;
-    padding: 50px 0;
-}
-
-h1 {
-    font-size: 3rem;
-    margin-bottom: 10px;
-    color: #111;
-}
-
-p {
-    margin: 20px auto;
-    color: #333;
-}
-
-/* Sections */
-section {
-    padding: 50px;
-    margin: 20px 0;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow-x: hidden;
-}
-
-/* Animation */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-.fade-in {
-    animation: fadeIn 1s ease-in-out;
-}
-
-@keyframes slideIn {
-    from { transform: translateX(-100%); }
-    to { transform: translateX(0); }
-}
-
-.slide-in {
-    animation: slideIn 1.2s ease-in-out;
-}
-
-/* Mode sombre */
-body.dark-mode {
-    background-color: #1e1e1e;
-    color: #f5f5f5;
-}
-
-body.dark-mode header, body.dark-mode footer {
-    background-color: #111;
-}
-
-body.dark-mode section {
-    background-color: #333;
-}
-
-body.dark-mode .project-item {
-    background-color: #444;
-    color: #f5f5f5;
+    margin-top: 50px;
 }
 
 .theme-toggle {
@@ -93,74 +98,37 @@ body.dark-mode .project-item {
     cursor: pointer;
 }
 
-#theme-icon {
-    width: 40px;
-    height: 40px;
+.dark-theme {
+    background-color: #111111;
+    color: #f0f0f0;
 }
 
-/* Grille de projets */
-.project-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-}
-
-.project-item {
-    background-color: #ffffff;
-    color: #111;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease;
-}
-
-.project-item:hover {
-    background-color: #f0f0f0;
-}
-
-.project-content {
-    text-align: center;
-}
-
-/* Formulaire de contact */
-.contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-input, textarea {
-    padding: 10px;
-    background-color: #f5f5f5;
-    border: none;
-    border-radius: 10px;
-}
-
-button[type="submit"] {
-    padding: 10px;
-    background-color: #444;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    border-radius: 10px;
-}
-
-button[type="submit"]:hover {
-    background-color: #555;
-}
-
-/* Footer */
-footer {
-    text-align: center;
-    padding: 20px;
+.light-theme {
     background-color: #f9f9f9;
-    color: #333;
-    margin-top: auto;
+    color: #111111;
 }
 
-/* Mode sombre pour le footer */
-body.dark-mode footer {
-    background-color: #111;
-    color: #f5f5f5;
+.light-theme .project-item {
+    background-color: #ffffff;
 }
 
+.dark-theme .project-item {
+    background-color: #222222;
+}
+
+.dark-theme .project-content {
+    color: #f0f0f0;
+}
+
+.dark-theme input, .dark-theme textarea {
+    background-color: #333333;
+    color: #f0f0f0;
+}
+
+.dark-theme button {
+    background-color: #444444;
+}
+
+.dark-theme button:hover {
+    background-color: #555555;
+}
