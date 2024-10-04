@@ -76,12 +76,12 @@ h1, h2, p {
 }
 
 .contact-form input:focus, .contact-form textarea:focus {
-    border-color: #007bff;
+    border-color: #008bff;
 }
 
 button {
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color: #008bff;
     color: white;
     border: none;
     border-radius: 6px;
