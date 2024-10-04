@@ -8,10 +8,10 @@ let isDarkMode = false;
 function setTheme() {
     if (isDarkMode) {
         body.classList.add('dark-theme');
-        themeIcon.setAttribute('fill', '#f0f0f0');
+        themeIcon.textContent = 'light_mode';
     } else {
         body.classList.remove('dark-theme');
-        themeIcon.setAttribute('fill', '#111111');
+        themeIcon.textContent = 'dark_mode';
     }
 }
 
@@ -35,4 +35,3 @@ document.getElementById('contact-form').addEventListener('submit', function(even
     alert('Votre message a été envoyé avec succès !');
     this.reset();  // Réinitialise le formulaire
 });
-
