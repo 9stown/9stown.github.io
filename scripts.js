@@ -28,3 +28,10 @@ window.addEventListener('scroll', function() {
     const scrollPos = window.scrollY;
     document.querySelector('header').style.backgroundPositionY = `${scrollPos * 0.5}px`;
 });
+
+// Confirmation après l'envoi du formulaire
+document.getElementById('contact-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    alert('Votre message a été envoyé avec succès !');
+    this.reset();  // Réinitialise le formulaire
+});
