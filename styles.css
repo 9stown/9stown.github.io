@@ -1,3 +1,4 @@
+/* Reset */
 * {
     margin: 0;
     padding: 0;
@@ -13,10 +14,22 @@ body {
     overscroll-behavior-y: contain;
 }
 
+/* Barre de défilement personnalisée */
 body::-webkit-scrollbar {
-    display: none;
+    width: 12px;
 }
 
+body::-webkit-scrollbar-track {
+    background: #f0f0f0; /* Track de scroll */
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #007bff; /* Couleur bleu clair */
+    border-radius: 6px;
+    border: 3px solid #f0f0f0;
+}
+
+/* Wrapper principal */
 .page-wrapper {
     max-width: 1200px;
     margin: 0 auto;
@@ -25,51 +38,44 @@ body::-webkit-scrollbar {
     height: 100vh;
 }
 
+/* Header */
 header {
     padding: 100px 20px;
     text-align: center;
-    background: linear-gradient(135deg, #007bff, #00d4ff); /* Dégradé clair */
+    background: linear-gradient(135deg, #007bff, #00d4ff); /* Thème clair */
     color: #fff;
     transition: background 0.5s;
-    border-radius: 0; /* Aucun bord arrondi */
+    border-radius: 0; /* Suppression des bords arrondis */
 }
 
 .dark-theme header {
-    background: linear-gradient(135deg, #333333, #555555); /* Dégradé sombre */
+    background: linear-gradient(135deg, #1a2a3a, #1c3a5b); /* Bleu marine pour le thème sombre */
 }
 
-h1, h2, p {
-    margin-bottom: 20px;
-    text-align: center;
-}
-
+/* Sections */
 .section {
     padding: 50px 20px;
     margin-bottom: 30px;
     border-radius: 12px;
-    background-color: #f9f9f9;
+    background-color: #f9f9f9; /* Couleur par défaut des sections */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     transition: background-color 0.5s, color 0.5s;
 }
 
-.no-top-radius {
-    border-radius: 0 0 12px 12px; /* Pas de bord arrondi en haut */
-    margin-top: -50px; /* Fusion avec l'en-tête */
-}
-
 .dark-theme .section {
-    background-color: #1c1c1c;
-    color: #e0e0e0;
+    background-color: #1c1c1c; /* Fond foncé pour le thème sombre */
+    color: #e0e0e0; /* Couleur de texte plus claire */
 }
 
 .section:nth-child(even) {
-    background-color: #eaf4ff;
+    background-color: #eaf4ff; /* Alternance de couleurs */
 }
 
 .dark-theme .section:nth-child(even) {
-    background-color: #2a2a2a;
+    background-color: #2a2a2a; /* Alternance pour thème sombre */
 }
 
+/* Projets */
 .project-grid {
     display: flex;
     flex-wrap: wrap;
@@ -91,12 +97,12 @@ h1, h2, p {
 }
 
 .dark-theme .project-item {
-    background-color: #2a2a2a;
-    color: #e0e0e0;
+    background-color: #2a2a2a; /* Fond sombre */
+    color: #e0e0e0; /* Texte clair */
 }
 
 .project-item:hover {
-    transform: translateY(-5px);
+    transform: translateY(-5px); /* Légère élévation au hover */
     background-color: #007bff;
     color: white;
 }
@@ -125,6 +131,7 @@ h1, h2, p {
     margin-bottom: 10px;
 }
 
+/* Formulaire de contact */
 .contact-form {
     display: flex;
     flex-direction: column;
@@ -140,20 +147,21 @@ h1, h2, p {
     transition: border-color 0.3s;
 }
 
+.contact-form input:focus, .contact-form textarea:focus {
+    border-color: #007bff; /* Focus couleur bleue */
+}
+
 .dark-theme .contact-form input, .dark-theme .contact-form textarea {
     background-color: #333333;
     color: #e0e0e0;
     border-color: #444444;
 }
 
-.contact-form input:focus, .contact-form textarea:focus {
-    border-color: #007bff;
-}
-
 .dark-theme .contact-form input:focus, .dark-theme .contact-form textarea:focus {
-    border-color: #555555;
+    border-color: #555555; /* Focus pour thème sombre */
 }
 
+/* Boutons */
 button {
     padding: 10px 20px;
     background-color: #007bff;
@@ -165,7 +173,7 @@ button {
 }
 
 .dark-theme button {
-    background-color: #444444;
+    background-color: #1a3b5d; /* Bleu marine */
 }
 
 button:hover {
@@ -173,9 +181,10 @@ button:hover {
 }
 
 .dark-theme button:hover {
-    background-color: #555555;
+    background-color: #004080;
 }
 
+/* Footer */
 footer {
     text-align: center;
     margin-top: 50px;
@@ -188,6 +197,7 @@ footer {
     background-color: #333333;
 }
 
+/* Thème */
 .theme-toggle {
     position: fixed;
     top: 20px;
@@ -204,6 +214,7 @@ footer {
     color: #f0f0f0;
 }
 
+/* Responsive */
 @media (max-width: 768px) {
     header {
         padding: 80px 20px;
