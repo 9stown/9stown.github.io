@@ -35,3 +35,4 @@ document.getElementById('contact-form').addEventListener('submit', function(even
     alert('Votre message a été envoyé avec succès !');
     this.reset();  // Réinitialise le formulaire
 });
+
