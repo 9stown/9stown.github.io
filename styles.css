@@ -12,6 +12,11 @@ body {
     min-height: 100vh;
     overflow-y: hidden; /* Masque la barre de défilement, mais permet le scroll avec la molette */
     overscroll-behavior-y: contain;
+    background-color: #f9f9f9; /* Fond clair par défaut */
+}
+
+.dark-theme body {
+    background-color: #1a1a1a; /* Fond sombre dans le thème dark */
 }
 
 /* Supprime l'affichage de la barre de défilement */
@@ -40,7 +45,7 @@ body::-webkit-scrollbar {
     scroll-behavior: smooth; /* Scroll fluide */
 }
 
-/* Header */
+/* Fusion continue du header et du bloc Infos */
 header {
     padding: 100px 20px;
     text-align: center;
@@ -64,8 +69,13 @@ header {
     transition: background-color 0.5s, color 0.5s;
 }
 
+.no-top-radius {
+    border-radius: 0; /* Pas de bords arrondis, fusion avec le header */
+    margin-top: -50px; /* Fusion visuelle avec l'en-tête */
+}
+
 .dark-theme .section {
-    background-color: #1a2a3a; /* Même couleur pour tous les blocs */
+    background-color: #1a2a3a; /* Même couleur sombre pour tous les blocs */
     color: #e0e0e0;
 }
 
@@ -102,7 +112,7 @@ header {
 }
 
 .dark-theme .project-item:hover {
-    background-color: #5b6a8e; /* Violet foncé/bleu pour le thème sombre */
+    background-color: #374d6e; /* Bleu marine foncé pour hover dans le thème sombre */
 }
 
 .project-link {
@@ -167,7 +177,7 @@ button {
 }
 
 .dark-theme button {
-    background-color: #5b6a8e; /* Violet foncé/bleu marine */
+    background-color: #374d6e; /* Bleu marine foncé pour le thème sombre */
 }
 
 button:hover {
@@ -226,4 +236,5 @@ footer {
         top: 10px;
     }
 }
+
 
