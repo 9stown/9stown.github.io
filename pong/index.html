@@ -6,84 +6,138 @@
     <title>Pong!</title>
     <style>
         body {
+            margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
-            background-color: black;
+            background-color: #87CEEB;
         }
         canvas {
-            border: 2px solid white;
-            background-color: black;
+            background-color: #f0f0f0;
         }
     </style>
 </head>
 <body>
-    <canvas id="pongCanvas" width="600" height="400"></canvas>
+    <canvas id="pongCanvas"></canvas>
     <script>
         const canvas = document.getElementById("pongCanvas");
         const ctx = canvas.getContext("2d");
 
-        const paddleWidth = 10, paddleHeight = 80;
-        let playerY = canvas.height / 2 - paddleHeight / 2;
-        let aiY = canvas.height / 2 - paddleHeight / 2;
-        const ballSize = 10;
-        let ballX = canvas.width / 2, ballY = canvas.height / 2;
-        let ballSpeedX = 5, ballSpeedY = 3;
-        const paddleSpeed = 6;
+        let paddleWidth, paddleHeight, ballSize;
+        let ball, leftPaddle, rightPaddle;
+        let paddleSpeed = 0.05;
+        let ballSpeedX = 0.1, ballSpeedY = 0.1;
 
-        let keysPressed = {};
-        document.addEventListener("keydown", (e) => keysPressed[e.key] = true);
-        document.addEventListener("keyup", (e) => keysPressed[e.key] = false);
-
-        function movePaddles() {
-            if (keysPressed["ArrowUp"] && playerY > 0) playerY -= paddleSpeed;
-            if (keysPressed["ArrowDown"] && playerY < canvas.height - paddleHeight) playerY += paddleSpeed;
-
-            if (ballY < aiY + paddleHeight / 2 && aiY > 0) aiY -= paddleSpeed * 0.8;
-            if (ballY > aiY + paddleHeight / 2 && aiY < canvas.height - paddleHeight) aiY += paddleSpeed * 0.8;
+       
+        function resizeCanvas() {
+            canvas.width = window.innerWidth * 0.8;
+            canvas.height = window.innerHeight * 0.8;
+            paddleWidth = canvas.width / 25;
+            paddleHeight = canvas.height / 6;
+            ballSize = canvas.width / 40;
         }
 
-        function draw() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        function init() {
+            resizeCanvas();
 
-            ctx.fillStyle = "white";
-            ctx.fillRect(10, playerY, paddleWidth, paddleHeight);
-            ctx.fillRect(canvas.width - 20, aiY, paddleWidth, paddleHeight); 
-            ctx.fillRect(ballX, ballY, ballSize, ballSize);
+            ball = {
+                x: canvas.width / 2,
+                y: canvas.height / 2,
+                radius: ballSize,
+                dx: ballSpeedX,
+                dy: ballSpeedY,
+            };
+
+            leftPaddle = {
+                x: 0,
+                y: canvas.height / 2 - paddleHeight / 2,
+                width: paddleWidth,
+                height: paddleHeight,
+                dy: 0,
+            };
+
+            rightPaddle = {
+                x: canvas.width - paddleWidth,
+                y: canvas.height / 2 - paddleHeight / 2,
+                width: paddleWidth,
+                height: paddleHeight,
+                dy: 0,
+            };
+
+            document.addEventListener("keydown", keyDownHandler);
+            document.addEventListener("keyup", keyUpHandler);
+
+            gameLoop();
         }
 
-        function updateBall() {
-            ballX += ballSpeedX;
-            ballY += ballSpeedY;
-
-            if (ballY <= 0 || ballY >= canvas.height - ballSize) {
-                ballSpeedY = -ballSpeedY;
-            }
-
-            if (ballX <= 20 && ballY > playerY && ballY < playerY + paddleHeight) {
-                ballSpeedX = -ballSpeedX;
-            }
-            if (ballX >= canvas.width - 30 && ballY > aiY && ballY < aiY + paddleHeight) {
-                ballSpeedX = -ballSpeedX;
-            }
-
-            if (ballX < 0 || ballX > canvas.width) {
-                ballX = canvas.width / 2;
-                ballY = canvas.height / 2;
-                ballSpeedX = -ballSpeedX;
-            }
-        }
-
+       
         function gameLoop() {
-            movePaddles();
-            updateBall();
-            draw();
+            updateGame();
+            drawGame();
             requestAnimationFrame(gameLoop);
         }
 
-        gameLoop();
+  
+        function updateGame() {
+            ball.x += ball.dx;
+            ball.y += ball.dy;
+
+         
+            if (ball.y + ball.radius > canvas.height || ball.y - ball.radius < 0) {
+                ball.dy *= -1;
+            }
+
+
+            if (ball.x - ball.radius < leftPaddle.x + leftPaddle.width && ball.y > leftPaddle.y && ball.y < leftPaddle.y + leftPaddle.height) {
+                ball.dx *= -1;
+            }
+
+            if (ball.x + ball.radius > rightPaddle.x && ball.y > rightPaddle.y && ball.y < rightPaddle.y + rightPaddle.height) {
+                ball.dx *= -1;
+            }
+
+
+            leftPaddle.y += leftPaddle.dy;
+            rightPaddle.y += rightPaddle.dy;
+
+
+            if (leftPaddle.y < 0) leftPaddle.y = 0;
+            if (leftPaddle.y + paddleHeight > canvas.height) leftPaddle.y = canvas.height - paddleHeight;
+            if (rightPaddle.y < 0) rightPaddle.y = 0;
+            if (rightPaddle.y + paddleHeight > canvas.height) rightPaddle.y = canvas.height - paddleHeight;
+        }
+
+        function drawGame() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+       
+
+            ctx.fillStyle = "#000000";
+            ctx.fillRect(leftPaddle.x, leftPaddle.y, leftPaddle.width, leftPaddle.height);
+            ctx.fillRect(rightPaddle.x, rightPaddle.y, rightPaddle.width, rightPaddle.height);
+        }
+
+
+        function keyDownHandler(event) {
+            if (event.key === "ArrowUp") rightPaddle.dy = -paddleSpeed;
+            if (event.key === "ArrowDown") rightPaddle.dy = paddleSpeed;
+            if (event.key === "w") leftPaddle.dy = -paddleSpeed;
+            if (event.key === "s") leftPaddle.dy = paddleSpeed;
+        }
+
+        function keyUpHandler(event) {
+            if (event.key === "ArrowUp" || event.key === "ArrowDown") rightPaddle.dy = 0;
+            if (event.key === "w" || event.key === "s") leftPaddle.dy = 0;
+        }
+
+      
+        init();
+
+
+        window.addEventListener("resize", resizeCanvas);
     </script>
 </body>
 </html>
+
