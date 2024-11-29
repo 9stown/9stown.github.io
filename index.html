@@ -1,11 +1,112 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0; url=/cube">
-    <title>Redirection...</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cube.</title>
+  <style>
+    @font-face {
+      font-family: 'PixelFont';
+      src: url('https://refresh4ever.github.io/font.ttf') format('truetype');
+    }
+
+    body { 
+      margin: 0; 
+      overflow: hidden; 
+      background: radial-gradient(circle, #0a0a0a, #020202); 
+    }
+    canvas { display: block; }
+
+    #fingerprint-text {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      color: rgba(128, 128, 128, 0.7);
+      font-family: 'PixelFont', monospace;
+      font-size: 16px;
+    }
+
+    @media (max-width: 768px) {
+      #fingerprint-text {
+        font-size: 12px;
+        bottom: 10px;
+        left: 10px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <p>Redirection en cours... Si cela prend trop de temps, <a href="/cube">clique ici</a>.</p>
+
+<div id="fingerprint-text">Loading ID...</div>
+
+<script type="module">
+  import * as THREE from 'https://cdn.skypack.dev/three@0.128.0';
+  import { EffectComposer } from 'https://cdn.skypack.dev/three@0.128.0/examples/jsm/postprocessing/EffectComposer.js';
+  import { RenderPass } from 'https://cdn.skypack.dev/three@0.128.0/examples/jsm/postprocessing/RenderPass.js';
+  import { UnrealBloomPass } from 'https://cdn.skypack.dev/three@0.128.0/examples/jsm/postprocessing/UnrealBloomPass.js';
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+  const renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  document.body.appendChild(renderer.domElement);
+
+  const geometry = new THREE.BoxGeometry(1.5, 1.5, 1.5);
+  const edges = new THREE.EdgesGeometry(geometry);
+  const lineMaterial = new THREE.LineBasicMaterial({ color: 0x00ff00 });
+  const cube = new THREE.LineSegments(edges, lineMaterial);
+  scene.add(cube);
+  camera.position.z = 4;
+
+  const composer = new EffectComposer(renderer);
+  composer.addPass(new RenderPass(scene, camera));
+  const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.5, 0.4, 0.85);
+  composer.addPass(bloomPass);
+
+  function animate() {
+    requestAnimationFrame(animate);
+    cube.rotation.x += 0.01;
+    cube.rotation.y += 0.01;
+    composer.render();
+  }
+  animate();
+
+  function loadFingerprint() {
+    const fingerprintText = document.getElementById('fingerprint-text');
+    const storedId = localStorage.getItem('userFingerprint');
+
+    if (storedId) {
+      setTimeout(() => {
+        fingerprintText.innerText = `ID: ${storedId}`;
+      }, getRandomDelay());
+    } else {
+      import('https://openfpcdn.io/fingerprintjs/v3').then(FingerprintJS => {
+        FingerprintJS.load().then(fp => {
+          setTimeout(() => {
+            fp.get().then(result => {
+              const fingerprint = result.visitorId;
+              localStorage.setItem('userFingerprint', fingerprint);
+              fingerprintText.innerText = `ID: ${fingerprint}`;
+            });
+          }, getRandomDelay());
+        });
+      });
+    }
+  }
+
+  function getRandomDelay() {
+    return Math.floor(Math.random() * 3000) + 2000;
+  }
+
+  window.onload = loadFingerprint;
+
+  window.addEventListener('resize', () => {
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    composer.setSize(window.innerWidth, window.innerHeight);
+  });
+</script>
+
 </body>
 </html>
