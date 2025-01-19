@@ -23,9 +23,6 @@
 </head>
 <body>
 
-  <canvas id="canvas"></canvas>
-  <div id="weather">Chargement de la météo...</div>
-
   <script src="https://cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@3/dist/fp.min.js"></script>
   <script type="module">
     import * as THREE from 'https://cdn.skypack.dev/three@0.128.0';
@@ -70,34 +67,3 @@
       camera.updateProjectionMatrix();
       composer.setSize(window.innerWidth, window.innerHeight);
     });
-
-    const apiKeyOWM = "${{ vars.APIKEYOWM }}";
-    const apiKeyIP = "${{ vars.APIKEYIP }}";
-    const fpPromise = FingerprintJS.load();
-
-    fpPromise
-      .then(fp => fp.get())
-      .then(result => {
-        const visitorId = result.visitorId;
-        console.log(`Visitor ID: ${visitorId}`);
-
-        fetch(`https://ipinfo.io/json?token=${apiKeyIP}`)
-          .then(response => response.json())
-          .then(location => {
-            const [lat, lon] = location.loc.split(',');
-            console.log(`Location: ${lat}, ${lon}`);
-
-            fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKeyOWM}&units=metric`)
-              .then(response => response.json())
-              .then(weather => {
-                const weatherDiv = document.getElementById('weather');
-                weatherDiv.innerHTML = `Chez vous, il fait environ ${weather.main.temp}°C`;
-              })
-              .catch(error => console.error('Error fetching weather data:', error));
-          })
-          .catch(error => console.error('Error fetching location data:', error));
-      })
-      .catch(error => console.error('Error loading FingerprintJS:', error));
-  </script>
-</body>
-</html>
