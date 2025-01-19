@@ -71,8 +71,8 @@
       composer.setSize(window.innerWidth, window.innerHeight);
     });
 
-    const apiKeyOWM = 'apiKey';
-    const apiKeyIP = 'apiKey';
+    const apiKeyOWM = "${{ vars.APIKEYOWM }}";
+    const apiKeyIP = "${{ vars.APIKEYIP }}";
     const fpPromise = FingerprintJS.load();
 
     fpPromise
