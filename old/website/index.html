@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>my first website</title>
+    <style>
+        :root {
+            --bg-silver: silver;
+            --border-gray: 2px solid gray;
+            --shadow: 4px 4px 0 #000;
+            --font-size: 12px
+        }
+
+        @font-face {
+            font-family: 'CustomFont';
+            src: url('font.otf') format('opentype');
+        }
+
+        body {
+            background-color: #008080;
+            font-family: 'CustomFont', 'MS Sans Serif', Tahoma, sans-serif;
+            margin: 0;
+            padding: 0;
+            cursor: default;
+            line-height: 0.5;
+        }
+        .window, .window2, .window3, .window4 {
+            background: var(--bg-silver);
+            border: var(--border-gray);
+            box-shadow: var(--shadow);
+            position: absolute;
+            padding: 5px;
+            font-size: var(--font-size);
+            z-index: 9
+        }
+        .window { width: 400px; top: 50px; left: 50px }
+        .window2 { width: 360px; top: 186px; left: 220px; z-index: 10 }
+        .window3, .window4 {
+            width: 300px;
+            background: #b1b1b1;
+            z-index: 10
+        }
+        .window3 { top: 290px; left: 30px }
+        .window4 { top: 800px; left: 25px }
+        .window5 {
+        width: 350px;
+        background: #d3d3d3;
+        z-index: 10;
+        top: 900px;
+        left: 200px;
+    }
+    
+        .title-bar, .title-bar2, .title-bar3, .title-bar4 {
+            color: #fff;
+            padding: 5px;
+            font-weight: 700
+        }
+        .title-bar, .title-bar4 { background: navy }
+        .title-bar2 { background: #dbc712 }
+        .title-bar3 { background: #1100ff }
+        .title-bar5 {
+        background: navy;
+        color: #fff;
+        padding: 5px;
+        font-weight: 700;
+    }
+        .content {
+            padding: 10px;
+            background: #fff;
+            border: 1px inset gray;
+            font-size: 14px
+        }
+        .ad-window, .ad-window2, .ad-window3, .ad-window4 {
+            position: absolute;
+            border: var(--border-gray);
+            box-shadow: var(--shadow);
+            background-color: #c0c0c0;
+            padding: 5px;
+            font-size: var(--font-size);
+            transform: translateX(-50%)
+        }
+        .ad-window { top: 120px; left: 80% }
+        .ad-window2 { top: 389px; left: 70% }
+        .ad-window3 { top: 425px; left: 90% }
+        .ad-window4 { top: 520px; left: 60% }
+        .ad-window img, .ad-window2 img, .ad-window3 img { display: block; margin: 20px auto }
+        .ad-window4 img { display: block; margin: 5px auto }
+        .music-player {
+            width: 300px;
+            background: var(--bg-silver);
+            border: var(--border-gray);
+            box-shadow: var(--shadow);
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            padding: 5px;
+            font-size: var(--font-size)
+        }
+        .controls img {
+            margin: 0;
+            padding: 0;
+        }
+        .controls {
+            display: flex;
+            gap: 0;
+            justify-content: center;
+        }
+        .button { padding: 3px; margin: 5px }
+        .progress {
+            width: 100%;
+            height: 10px;
+            background: #fff;
+            border: 1px inset gray;
+            margin: 5px 0;
+            position: relative
+        }
+        .progress-bar { width: 0; height: 100%; background: navy }
+
+        .volume {
+            width: 100px;
+            height: 10px;
+            background: #ccc;
+            position: relative;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+        .volume-bar {
+            height: 100%;
+            background: #007bff;
+            position: absolute;
+            left: 0;
+        }
+    </style>
+</head>
+<div id="desktop"></div>
+    <script>
+        const windows = [
+            { id: 'window1', title: 'website', titleBarClass: 'title-bar', content: `<p>hey! welcome to my first website :-)</p><p>here, you can do... nothing xD</p>`, position: { top: 100, left: 50 }, width: 400 },
+            { id: 'window2', title: 'sticky notes', titleBarClass: 'title-bar2', content: `<p>note : being a website professional</p><p>- under construction ! -</p> <p>last update: 05 February 2025</p>`, position: { top: 186, left: 220 }, width: 360 },
+            { id: 'window3', title: 'credits', titleBarClass: 'title-bar3', content: '<p>development by refresh4ever</p> <p>music by madxruler </p>', position: { top: 290, left: 30 }, width: 300, background: '#b1b1b1' },
+            { id: 'window5',
+                title: 'about me',
+                titleBarClass: 'title-bar5',
+                content: '<p>hey, i am refresh4ever</p> <p>my email is hello.refresh4ever@gmail.com </p> <p>and my discord is : @refresh4ever</p> </p> <p> i am the only developer on this project.</p>',
+                position: { top: 360, left: 200 },
+                width: 300,
+                background: '#b1b1b1' }
+        ],
+
+        ads = [
+            { id: 'ad1', title: 'ad', image: 'https://i.imgur.com/MDJzBZK.png', position: { top: 120, left: '80%' }, dimensions: { width: 300, height: 289 } },
+            { id: 'ad2', title: 'ad', image: 'https://i.imgur.com/o3eqVvC.png', position: { top: 389, left: '70%' }, dimensions: { width: 300, height: 200 } },
+            { id: 'ad3', title: 'ad', image: 'https://i.imgur.com/EOdunms.png', position: { top: 425, left: '90%' }, dimensions: { width: 250, height: 150 } },
+            { id: 'ad4', title: 'ad', image: 'https://i.imgur.com/9FtSSWG.png', position: { top: 520, left: '60%' }, dimensions: { width: 120, height: 120 } }
+        ];
+
+        const createWindow = config => {
+            const window = document.createElement('div');
+            window.id = config.id;
+            window.className = 'window';
+            Object.assign(window.style, {
+                background: config.background || '',
+                width: config.width ? config.width + 'px' : '',
+                top: config.position.top + 'px',
+                left: typeof config.position.left === 'string' ? config.position.left : config.position.left + 'px'
+            });
+            window.innerHTML = `<div class="${config.titleBarClass}">${config.title}</div><div class="content">${config.content}</div>`;
+            return window;
+        };
+
+        const createAd = config => {
+            const ad = document.createElement('div');
+            Object.assign(ad, {
+                id: config.id,
+                className: 'ad-window',
+                innerHTML: `<div class="title-bar">${config.title}</div><img src="${config.image}" alt="${config.title}" width="${config.dimensions.width}" height="${config.dimensions.height}">`
+            });
+            Object.assign(ad.style, {
+                top: config.position.top + 'px',
+                left: config.position.left
+            });
+            return ad;
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const desktop = document.getElementById('desktop');
+            [...windows.map(createWindow), ...ads.map(createAd)].forEach(el => desktop.appendChild(el));
+
+            const player = Object.assign(document.createElement('div'), {
+            id: 'player',
+            className: 'window4',
+            innerHTML: `<div class="title-bar4">Media Player</div>
+                        <div class="progress">
+                            <div class="progress-bar" id="progress-bar"></div>
+                        </div>
+                        <div class="controls">
+                            <img src="play.png" alt="Play" id="play-pause" width="35" height="35">
+                            <img src="loop.png" alt="Loop" id="loop" width="35" height="35">
+                        </div>
+                        <audio id="audio" src="song.mp3"></audio>`
+        });
+        document.getElementById('desktop').appendChild(player);
+
+        const makeDraggable = element => {
+            let offsetX, offsetY, isDragging = false;
+            element.addEventListener('mousedown', e => {
+                [isDragging, offsetX, offsetY] = [true, e.clientX - element.offsetLeft, e.clientY - element.offsetTop];
+                element.style.zIndex = 1000;
+            });
+            document.addEventListener('mousemove', e => isDragging && Object.assign(element.style, {
+                left: (e.clientX - offsetX) + 'px',
+                top: (e.clientY - offsetY) + 'px'
+            }));
+            document.addEventListener('mouseup', () => [isDragging, element.style.zIndex] = [false, '']);
+        };
+
+        document.querySelectorAll('.window, .ad-window, .window4').forEach(makeDraggable);
+
+        const [audio, progressBar] = ['audio', 'progress-bar'].map(id => document.getElementById(id));
+        const playPauseButton = document.getElementById('play-pause');
+        const loopButton = document.getElementById('loop');
+
+        playPauseButton.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play();
+                playPauseButton.src = 'pause.png';
+            } else {
+                audio.pause();
+                playPauseButton.src = 'play.png';
+            }
+        });
+
+        /* easter egg : huh, today it's' not the 20 april, come back later  */
+
+        loopButton.addEventListener('click', () => {
+            audio.loop = !audio.loop;
+            loopButton.classList.toggle('active', audio.loop);
+            loopButton.src = audio.loop ? 'loop_activated.png' : 'loop.png';
+        });
+
+        audio.addEventListener('timeupdate', () => {
+            const progress = (audio.currentTime / audio.duration) * 100;
+            progressBar.style.width = progress + '%';
+        });
+
+        ['play-pause', 'loop'].forEach(id => {
+            const button = document.getElementById(id);
+            button.addEventListener('mouseover', () => {
+                button.src = button.src.replace('.png', '_over.png');
+            });
+            button.addEventListener('mouseout', () => {
+                button.src = button.src.replace('_over.png', '.png');
+            });
+            button.addEventListener('mousedown', () => {
+                button.src = button.src.replace('_over.png', '_pressed.png');
+            });
+            button.addEventListener('mouseup', () => {
+                button.src = button.src.replace('_pressed.png', '_over.png');
+            });
+        });
+
+        loopButton.addEventListener('mouseover', () => {
+            if (audio.loop) {
+                loopButton.src = 'loop_activated_over.png';
+            } else {
+                loopButton.src = 'loop_over.png';
+            }
+        });
+        loopButton.addEventListener('mouseout', () => {
+            if (audio.loop) {
+                loopButton.src = 'loop_activated.png';
+            } else {
+                loopButton.src = 'loop.png';
+            }
+        });
+        loopButton.addEventListener('mousedown', () => {
+            if (audio.loop) {
+                loopButton.src = 'loop_activated_pressed.png';
+            } else {
+                loopButton.src = 'loop_pressed.png';
+            }
+        });
+        loopButton.addEventListener('mouseup', () => {
+            if (audio.loop) {
+                loopButton.src = 'loop_activated_over.png';
+            } else {
+                loopButton.src = 'loop_over.png';
+            }
+        });
+    });
+    </script>
+</body>
+</html>
