@@ -1,1 +1,65 @@
 
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Abonnez vous à ce goat !</title>
+    <style>
+        :root {
+            --bg-silver: silver;
+            --border-gray: 2px solid gray;
+            --shadow: 4px 4px 0 #000;
+            --font-size: 12px;
+        }
+
+        @font-face {
+            font-family: 'CustomFont';
+            src: url('font.otf') format('opentype');
+        }
+
+        body {
+            background-color: #008080;
+            font-family: 'CustomFont', 'MS Sans Serif', Tahoma, sans-serif;
+            margin: 0;
+            padding: 0;
+            cursor: default;
+            line-height: 1.2;
+        }
+
+        .window {
+            background: var(--bg-silver);
+            border: var(--border-gray);
+            box-shadow: var(--shadow);
+            position: absolute;
+            padding: 5px;
+            font-size: 16px;
+            z-index: 9;
+            width: 300px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .title-bar {
+            background: #000080;
+            color: #fff;
+            padding: 5px;
+            font-weight: bold;
+        }
+
+        .content {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="window">
+        <div class="title-bar">Skybreaker.exe</div>
+        <div class="content">
+            <p><b>ABONNEZ VOUS A CE GOAT !!!!</b></p>
+          <p><b>https://youtube.com/@skybreakeroff</b></p>
+        </div>
+    </div>
+</body>
+</html>
