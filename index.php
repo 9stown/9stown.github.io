@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>i use arch btw</title>
+	<title>use arch >:3</title>
 	<style>
 		body {
 			font-family: "Fira Mono", "Consolas", "Menlo", monospace;
